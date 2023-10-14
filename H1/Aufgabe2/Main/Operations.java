@@ -1,5 +1,3 @@
-package Aufgabe2.Main;
-
 public class Operations {
 
     int[] numbers = {4, 8, 3, 10, 17};
