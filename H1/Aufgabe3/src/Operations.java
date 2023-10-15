@@ -8,14 +8,19 @@ public class Operations {
             num = num * 10 + arr[i];
         return num;
     }
+
+    public int power(int[] arr){
+        int pow=1;
+        for(int k = 0; k < arr.length; k++)
+            pow *= 10;
+        return pow;
+    }
     public int[] sum(int[] arr1, int[] arr2){
         int[] result;
         int num1 = numberBuilder(arr1);
         int num2 = numberBuilder(arr2);
         int num3 = num1 + num2;
-        int i = 0, aux, power=1;
-        for(int k = 0; k < arr1.length; k++)
-            power *= 10;
+        int i = 0, aux, power=power(arr1);
         if(num3 / power == 1){
             result = new int[arr2.length+1];
         }else{
@@ -33,4 +38,28 @@ public class Operations {
         }
         return result;
     }
+
+    public int[] diff(int[] arr1, int[] arr2){
+        int[] result = new int[arr1.length];
+        int num1 = numberBuilder(arr1);
+        int num2 = numberBuilder(arr2);
+        int num3 = num1 - num2;
+        int i = 0, aux;
+        while(num3 != 0){
+            result[i] = num3%10;
+            num3 /= 10;
+            i++;
+        }
+        for(int j = 0; j < result.length / 2; j++){
+            aux = result[j];
+            result[j] = result[result.length - j - 1];
+            result[result.length - j - 1] = aux;
+        }
+        return result;
+    }
+
+//    public int[] dup(int[] arr, int num){
+//        int aux = numberBuilder(arr) * 2;
+//    }
 }
+
