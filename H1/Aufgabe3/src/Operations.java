@@ -40,11 +40,15 @@ public class Operations {
     }
 
     public int[] diff(int[] arr1, int[] arr2){
-        int[] result = new int[arr1.length];
+        int[] result;
         int num1 = numberBuilder(arr1);
         int num2 = numberBuilder(arr2);
         int num3 = num1 - num2;
-        int i = 0, aux;
+        int i = 0, aux, power = power(arr1)/10;
+        if (num3/power != 0)
+            result = new int[arr1.length];
+        else
+            result = new int[arr1.length-1];
         while(num3 != 0){
             result[i] = num3%10;
             num3 /= 10;
@@ -66,6 +70,27 @@ public class Operations {
             result = new int[arr.length+1];
         else
             result = new int[arr.length];
+        while (aux !=0){
+            result[i] = aux%10;
+            aux /= 10;
+            i++;
+        }
+        for(int j = 0; j < result.length / 2; j++){
+            aux = result[j];
+            result[j] = result[result.length - j - 1];
+            result[result.length - j - 1] = aux;
+        }
+        return result;
+    }
+
+    public int[] div(int[] arr, int num){
+        int aux = numberBuilder(arr)/num;
+        int i = 0, power = power(arr)/10;
+        int[] result;
+        if(aux/power != 0)
+            result = new int[arr.length];
+        else
+            result = new int[arr.length-1];
         while (aux !=0){
             result[i] = aux%10;
             aux /= 10;
