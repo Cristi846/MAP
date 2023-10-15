@@ -26,4 +26,15 @@ public class ElektronikShop {
                 productPrice = list[i];
         return productPrice;
     }
+
+    public int receipt(int[] keyboards, int[] USBs, int budget){
+        int receipt = -1;
+        for(int i = 0; i < keyboards.length; i++){
+            for(int j = 0; j < USBs.length; j++){
+                if(keyboards[i] + USBs[j] <= budget && keyboards[i] + USBs[j] > receipt)
+                    receipt = keyboards[i] + USBs[j];
+            }
+        }
+        return receipt;
+    }
 }
