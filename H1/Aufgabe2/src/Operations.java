@@ -1,14 +1,13 @@
 public class Operations {
 
-    int[] numbers = {4, 8, 3, 10, 17};
-    public int maxNum(){
+    public int maxNum(int[] numbers){
         int max = Integer.MIN_VALUE;
         for (int i = 0; i < numbers.length; i++)
             if (numbers[i] > max)
                 max = numbers[i];
         return max;
     }
-    public int minNum(){
+    public int minNum(int[] numbers){
         int min = Integer.MAX_VALUE;
         for (int i = 0; i < numbers.length; i++)
             if (numbers[i] < min)
@@ -16,8 +15,8 @@ public class Operations {
         return min;
     }
 
-    public int maxSum(){
-        int max = maxNum();
+    public int minSum(int[] numbers){
+        int max = maxNum(numbers);
         int sum = 0;
         for(int i = 0; i < numbers.length; i++)
             sum += numbers[i];
@@ -25,8 +24,8 @@ public class Operations {
         return sum - max;
     }
 
-    public int minSum(){
-        int min = minNum();
+    public int maxSum(int[] numbers){
+        int min = minNum(numbers);
         int sum = 0;
         for(int i = 0; i < numbers.length; i++)
             sum += numbers[i];
