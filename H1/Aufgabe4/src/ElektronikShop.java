@@ -19,5 +19,11 @@ public class ElektronikShop {
         return max;
     }
 
-
+    public int inBudgetUSB(int[] list, int budget){
+        int productPrice = -1;
+        for(int i = 0; i < list.length; i++)
+            if(list[i] > productPrice && list[i] <= budget)
+                productPrice = list[i];
+        return productPrice;
+    }
 }
