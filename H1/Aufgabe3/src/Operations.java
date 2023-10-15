@@ -58,8 +58,25 @@ public class Operations {
         return result;
     }
 
-//    public int[] dup(int[] arr, int num){
-//        int aux = numberBuilder(arr) * 2;
-//    }
+    public int[] dup(int[] arr, int num){
+        int aux = numberBuilder(arr) * num;
+        int power = power(arr), i = 0;
+        int[] result;
+        if(aux / power > 0)
+            result = new int[arr.length+1];
+        else
+            result = new int[arr.length];
+        while (aux !=0){
+            result[i] = aux%10;
+            aux /= 10;
+            i++;
+        }
+        for(int j = 0; j < result.length / 2; j++){
+            aux = result[j];
+            result[j] = result[result.length - j - 1];
+            result[result.length - j - 1] = aux;
+        }
+        return result;
+    }
 }
 

@@ -7,5 +7,6 @@ public class Main {
         Operations op = new Operations();
         System.out.println(Arrays.toString(op.sum(array1, array2)));
         System.out.println(Arrays.toString(op.diff(array1, array2)));
+        System.out.println(Arrays.toString(op.dup(array1,2)));
     }
 }
