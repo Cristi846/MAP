@@ -1,29 +1,61 @@
-
 import org.junit.jupiter.api.Test;
-public class Teste {
+import static org.junit.jupiter.api.Assertions.*;
+
+class OperationsTest {
+
     @Test
-    public void maxNumTest(){
-        int[] arr = new int[]{1, 2, 3, 3};
-        Operations op = new Operations();
-        assert op.maxNum(arr) == 3;
-    }
-    @Test
-    public void minNumTest(){
-        int[] arr = new int[]{1, 2, 3};
-        Operations op = new Operations();
-        assert op.minNum(arr) == 1;
-    }
-    @Test
-    public void maxSumTest(){
-        int[] arr = new int[]{1, 2, 3};
-        Operations op = new Operations();
-        assert op.maxSum(arr) == 5;
-    }
-    @Test
-    public void minSumTest(){
-        int[] arr = new int[]{1, 2, 3};
-        Operations op = new Operations();
-        assert op.minSum(arr) == 3;
+    public void testMaxNum() {
+        Operations operations = new Operations();
+        int[] numbers = {5, 10, 1, 20, 3};
+        assertEquals(20, operations.maxNum(numbers));
     }
 
+    @Test
+    public void testMinNum() {
+        Operations operations = new Operations();
+        int[] numbers = {5, 10, 1, 20, 3};
+        assertEquals(1, operations.minNum(numbers));
+    }
+
+    @Test
+    public void testMinSum() {
+        Operations operations = new Operations();
+        int[] numbers = {5, 10, 1, 20, 3};
+        assertEquals(19, operations.minSum(numbers));
+    }
+
+    @Test
+    public void testMaxSum() {
+        Operations operations = new Operations();
+        int[] numbers = {5, 10, 1, 20, 3};
+        assertEquals(38, operations.maxSum(numbers));
+    }
+
+    @Test
+    public void testMaxNumEmptyArray() {
+        Operations operations = new Operations();
+        int[] numbers = {};
+        assertEquals(Integer.MIN_VALUE, operations.maxNum(numbers));
+    }
+
+    @Test
+    public void testMinNumEmptyArray() {
+        Operations operations = new Operations();
+        int[] numbers = {};
+        assertEquals(Integer.MAX_VALUE, operations.minNum(numbers));
+    }
+
+    @Test
+    public void testMinSumEmptyArray() {
+        Operations operations = new Operations();
+        int[] numbers = {};
+        assertEquals(-operations.maxNum(numbers), operations.minSum(numbers));
+    }
+
+    @Test
+    public void testMaxSumEmptyArray() {
+        Operations operations = new Operations();
+        int[] numbers = {};
+        assertEquals(-operations.minNum(numbers), operations.maxSum(numbers));
+    }
 }
