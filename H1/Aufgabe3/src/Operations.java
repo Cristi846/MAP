@@ -62,7 +62,7 @@ public class Operations {
         return result;
     }
 
-    public int[] dup(int[] arr, int num){
+    public int[] mul(int[] arr, int num){
         int aux = numberBuilder(arr) * num;
         int power = power(arr), i = 0;
         int[] result;
