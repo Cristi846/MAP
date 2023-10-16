@@ -28,8 +28,9 @@ class Noten {
         for (int note : noten) {
             sum += note;
         }
+        double num = noten.length * 1.0;
 
-        return sum / noten.length;
+        return sum / num;
     }
 
     public int[] abgerundeteNoten(int[] noten){
@@ -66,7 +67,7 @@ class Noten {
         if (note < 38 || note % 5 < 3) {
             return note;
         } else {
-            return note + note % 5;
+            return note + (5 - note%5);
         }
     }
 }
