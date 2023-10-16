@@ -44,6 +44,8 @@ public class Operations {
         int num1 = numberBuilder(arr1);
         int num2 = numberBuilder(arr2);
         int num3 = num1 - num2;
+        if(num3 < 0)
+            return new int[]{-1};
         int i = 0, aux, power = power(arr1)/10;
         if (num3/power != 0)
             result = new int[arr1.length];

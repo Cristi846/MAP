@@ -1,4 +1,4 @@
-
+import java.util.Arrays;
 
 class Noten {
 
@@ -18,7 +18,6 @@ class Noten {
 
         return result;
     }
-
     public double durchschnittswert(int[] noten) {
         if (noten.length == 0) {
             return 0.0;
@@ -38,7 +37,7 @@ class Noten {
         int index = 0;
 
         for (int note : noten) {
-            if (note >= 38) {
+            if (note >= 38 && round(note) != note) {
                 abgerundeteNote[index] = round(note);
                 index++;
             }
@@ -47,6 +46,7 @@ class Noten {
         int[] result = new int[index];
         System.arraycopy(abgerundeteNote, 0, result, 0, index);
 
+        System.out.println(Arrays.toString(result));
         return result;
     }
 

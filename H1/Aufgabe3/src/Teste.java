@@ -1,72 +1,89 @@
 import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
 
-import java.util.Arrays;
-import java.util.Objects;
+class OperationsTest {
 
-
-public class Teste {
     @Test
-    public void numberBuilderTester(){
-        Operations op = new Operations();
-        int[] arr = new int[]{1, 2, 3};
-        int number = op.numberBuilder(arr);
-        assert number == 123;
+    public void testNumberBuilder() {
+        Operations operations = new Operations();
+        int[] arr = {1, 2, 3};
+        assertEquals(123, operations.numberBuilder(arr));
     }
 
     @Test
-    public void powerTester(){
-        Operations op = new Operations();
-        int[] arr = new int[]{1, 2, 3};
-        int pow = op.power(arr);
-        assert pow == 1000;
+    public void testPower() {
+        Operations operations = new Operations();
+        int[] arr = {1, 2, 3};
+        assertEquals(1000, operations.power(arr));
     }
 
     @Test
-    public void sumTester(){
-        Operations op = new Operations();
-        int[] arr1 = new int[]{1, 2, 3};
-        int[] arr2 = new int[]{1, 2, 3};
-        int[] rez  = op.sum(arr1, arr2);
-        assert Arrays.equals(rez, new int[]{2, 4, 6});
-
-        int[] arr3 = new int[]{1, 2, 3};
-        int[] arr4 = new int[]{8, 7, 7};
-        int[] rez2  = op.sum(arr3, arr4);
-        assert Arrays.equals(rez2, new int[]{1, 0, 0, 0});
+    public void testSum() {
+        Operations operations = new Operations();
+        int[] arr1 = {1, 2, 3};
+        int[] arr2 = {4, 5, 6};
+        int[] expectedResult = {5, 7, 9};
+        assertArrayEquals(expectedResult, operations.sum(arr1, arr2));
     }
 
     @Test
-    public void diffTester(){
-        Operations op = new Operations();
-        int[] arr1 = new int[]{3, 2, 3};
-        int[] arr2 = new int[]{1, 2, 3};
-        int[] rez  = op.diff(arr1, arr2);
-        assert Arrays.equals(rez, new int[]{2, 0, 0});
-
-        int[] arr3 = new int[]{2, 2, 0};
-        int[] arr4 = new int[]{1, 7, 0};
-        int[] rez2  = op.diff(arr3, arr4);
-        assert Arrays.equals(rez2, new int[]{5, 0});
+    public void testSum2(){
+        Operations operations = new Operations();
+        int[] arr1 = {1, 2, 3};
+        int[] arr2 = {8, 7, 7};
+        int[] expectedResult = {1, 0, 0, 0};
+        assertArrayEquals(expectedResult, operations.sum(arr1, arr2));
     }
 
     @Test
-    public void mulTester(){
-        Operations op = new Operations();
-        int[] arr1 = new int[]{1, 2, 3};
-        assert Arrays.equals(op.mul(arr1, 2), new int[]{2, 4, 6});
-
-        int[] arr2 = new int[]{5, 0, 0};
-        assert Arrays.equals(op.mul(arr2, 2), new int[]{1, 0, 0, 0});
+    public void testDiff() {
+        Operations operations = new Operations();
+        int[] arr1 = {4, 5, 6};
+        int[] arr2 = {1, 2, 3};
+        int[] expectedResult = {3, 3, 3};
+        assertArrayEquals(expectedResult, operations.diff(arr1, arr2));
     }
 
     @Test
-    public void divTester(){
-        Operations op = new Operations();
-        int[] arr1 = new int[]{2, 0, 0};
-        assert Arrays.equals(op.div(arr1, 2), new int[]{1, 0, 0});
-
-        int[] arr2 = new int[]{1, 0, 0};
-        assert Arrays.equals(op.div(arr2, 2), new int[]{5, 0});
+    public void testDiff2(){
+        Operations operations = new Operations();
+        int[] arr1 = {1, 2, 3};
+        int[] arr2 = {4, 5, 6};
+        int[] expectedResult = {-1};
+        assertArrayEquals(expectedResult, operations.diff(arr1, arr2));
     }
 
+    @Test
+    public void testMul(){
+        Operations operations = new Operations();
+        int[] arr = {2, 3, 4};
+        int num = 2;
+        int[] expectedResult = {4, 6, 8};
+        assertArrayEquals(expectedResult, operations.mul(arr, num));
+    }
+    @Test
+    public void testMul2() {
+        Operations operations = new Operations();
+        int[] arr = {2, 3, 4};
+        int num = 5;
+        int[] expectedResult = {1, 1, 7, 0};
+        assertArrayEquals(expectedResult, operations.mul(arr, num));
+    }
+
+    @Test
+    public void testDiv(){
+        Operations operations = new Operations();
+        int[] arr = {2, 2, 2};
+        int num = 2;
+        int[] expectedResult = {1, 1, 1};
+        assertArrayEquals(expectedResult, operations.div(arr, num));
+    }
+    @Test
+    public void testDiv2() {
+        Operations operations = new Operations();
+        int[] arr = {1, 2, 2};
+        int num = 2;
+        int[] expectedResult = {6, 1};
+        assertArrayEquals(expectedResult, operations.div(arr, num));
+    }
 }

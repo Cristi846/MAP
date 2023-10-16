@@ -1,37 +1,46 @@
-import org.testng.annotations.Test;
+import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
-import java.util.Objects;
+import static org.junit.jupiter.api.Assertions.*;
 
-public class Teste {
+class NotenTest {
+
     @Test
-    public void nichtAusreichendeNotenTester(){
-        Noten no = new Noten();
-        int[] arr = new int[]{10, 20, 30, 40};
-        assert Arrays.equals(no.nichtAusreichendeNoten(arr), new int[]{10, 20, 30});
+    public void testNichtAusreichendeNoten() {
+        Noten noten = new Noten();
+        int[] grades = {60, 35, 42, 30, 75};
+        int[] expected = {35, 30};
+        assertArrayEquals(expected, noten.nichtAusreichendeNoten(grades));
     }
 
     @Test
-    public void durchschnittswertTester(){
-        Noten no = new Noten();
-        int[] arr = new int[]{10, 20, 30, 40};
-        assert no.durchschnittswert(arr) == 25;
-
-        int[] arr2 = new int[]{2, 3};
-        assert no.durchschnittswert(arr2) == 2.5;
+    public void testDurchschnittswert() {
+        Noten noten = new Noten();
+        int[] grades = {60, 35, 42, 30, 75};
+        double expected = 48.4;
+        assertEquals(expected, noten.durchschnittswert(grades));
     }
 
     @Test
-    public void abgerundeteNotenTester(){
-        Noten no = new Noten();
-        int[] arr = new int[]{10, 20, 30, 38};
-        assert Arrays.equals(no.abgerundeteNoten(arr), new int[]{40});
+    public void testDurchschnittswertEmptyArray() {
+        Noten noten = new Noten();
+        int[] grades = {};
+        double expected = 0.0;
+        assertEquals(expected, noten.durchschnittswert(grades), 0.01);
     }
 
     @Test
-    public void maximaleAbgerundeteNoteTester(){
-        Noten no = new Noten();
-        int[] arr = new int[]{38, 40, 59, 28};
-        assert no.maximaleAbgerundeteNote(arr) == 60;
+    public void testAbgerundeteNoten() {
+        Noten noten = new Noten();
+        int[] grades = {60, 35, 42, 30, 75};
+        int[] expected = {60, 75};
+        assertArrayEquals(expected, noten.abgerundeteNoten(grades));
+    }
+
+    @Test
+    public void testMaximaleAbgerundeteNote() {
+        Noten noten = new Noten();
+        int[] grades = {60, 35, 42, 30, 75};
+        int expected = 75;
+        assertEquals(expected, noten.maximaleAbgerundeteNote(grades));
     }
 }
