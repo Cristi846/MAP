@@ -1,7 +1,7 @@
-import java.util.Arrays;
 
-class Noten {
+public class Noten {
 
+    // Methode zur Ermittlung von nicht ausreichenden Noten
     public int[] nichtAusreichendeNoten(int[] noten) {
         int[] nichtAusreichende = new int[noten.length];
         int index = 0;
@@ -18,6 +18,8 @@ class Noten {
 
         return result;
     }
+
+    // Methode zur Berechnung des Durchschnitts
     public double durchschnittswert(int[] noten) {
         if (noten.length == 0) {
             return 0.0;
@@ -27,34 +29,27 @@ class Noten {
         for (int note : noten) {
             sum += note;
         }
-        double num = noten.length * 1.0;
 
-        return sum / num;
+        return (double) sum / noten.length;
     }
 
-    public int[] abgerundeteNoten(int[] noten){
-        int[] abgerundeteNote = new int[noten.length];
-        int index = 0;
+    // Methode zur Abrundung der Noten
+    public int[] abgerundeteNoten(int[] noten) {
+        int[] abgerundet = new int[noten.length];
 
-        for (int note : noten) {
-            if (note >= 38 && round(note) != note) {
-                abgerundeteNote[index] = round(note);
-                index++;
-            }
+        for (int i = 0; i < noten.length; i++) {
+            abgerundet[i] = abgerundeteNote(noten[i]);
         }
 
-        int[] result = new int[index];
-        System.arraycopy(abgerundeteNote, 0, result, 0, index);
-
-        System.out.println(Arrays.toString(result));
-        return result;
+        return abgerundet;
     }
 
+    // Methode zur Ermittlung der maximalen abgerundeten Note
     public int maximaleAbgerundeteNote(int[] noten) {
         int maxAbgerundet = Integer.MIN_VALUE;
 
         for (int note : noten) {
-            int abgerundet = round(note);
+            int abgerundet = abgerundeteNote(note);
             if (abgerundet > maxAbgerundet) {
                 maxAbgerundet = abgerundet;
             }
@@ -63,11 +58,11 @@ class Noten {
         return maxAbgerundet;
     }
 
-    private int round(int note) {
+    public int abgerundeteNote(int note) {
         if (note < 38 || note % 5 < 3) {
             return note;
         } else {
-            return note + (5 - note%5);
+            return ((note / 5) + 1) * 5;
         }
     }
 }
