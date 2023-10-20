@@ -1,109 +1,124 @@
-import java.util.*;
 
 public class Operations {
 
-    public int numberBuilder(int[] arr){
-        int num = 0;
-        for(int i=0; i<arr.length; i++)
-            num = num * 10 + arr[i];
-        return num;
+    public int[] add(int[] list1, int[]  list2) {
+        int n = list1.length;
+        int[] result = new int[n];
+        int carry = 0;
+
+        for (int i = n - 1; i >= 0; i--) {
+            int sum = list1[i] + list2[i] + carry;
+            result[i] = sum % 10;
+            carry = sum / 10;
+        }
+
+        if (carry > 0) {
+            int[] newResult = new int[n + 1];
+            newResult[0] = carry;
+            System.arraycopy(result, 0, newResult, 1, n);
+            return newResult;
+        } else {
+            return result;
+        }
     }
 
-    public int power(int[] arr){
-        int pow=1;
-        for(int k = 0; k < arr.length; k++)
-            pow *= 10;
-        return pow;
-    }
-    public int[] sum(int[] arr1, int[] arr2){
-        int[] result;
-        int num1 = numberBuilder(arr1);
-        int num2 = numberBuilder(arr2);
-        int num3 = num1 + num2;
-        int i = 0, aux, power=power(arr1);
-        if(num3 / power == 1){
-            result = new int[arr2.length+1];
-        }else{
-            result = new int[arr2.length];
-        }
-        while(num3 != 0){
-            result[i] = num3%10;
-            num3 /= 10;
-            i++;
-        }
-        for(int j = 0; j < result.length / 2; j++){
-            aux = result[j];
-            result[j] = result[result.length - j - 1];
-            result[result.length - j - 1] = aux;
-        }
-        return result;
-    }
-
-    public int[] diff(int[] arr1, int[] arr2){
-        int[] result;
-        int num1 = numberBuilder(arr1);
-        int num2 = numberBuilder(arr2);
-        int num3 = num1 - num2;
-        if(num3 < 0)
+    public int[] subtract(int[] list1, int[]  list2) {
+        if (list1[0]< list2[0]){
             return new int[]{-1};
-        int i = 0, aux, power = power(arr1)/10;
-        if (num3/power != 0)
-            result = new int[arr1.length];
-        else
-            result = new int[arr1.length-1];
-        while(num3 != 0){
-            result[i] = num3%10;
-            num3 /= 10;
-            i++;
         }
-        for(int j = 0; j < result.length / 2; j++){
-            aux = result[j];
-            result[j] = result[result.length - j - 1];
-            result[result.length - j - 1] = aux;
+        int n = list1.length;
+        int[] result = new int[n];
+        int borrow = 0;
+
+        for (int i = n - 1; i >= 0; i--) {
+            int diff = list1[i] - list2[i] - borrow;
+
+            if (diff < 0) {
+                diff += 10;
+                borrow = 1;
+            } else {
+                borrow = 0;
+            }
+
+            result[i] = diff;
         }
-        return result;
+
+        boolean isNegative = false;
+        if (borrow > 0) {
+            isNegative = true;
+        }
+
+        int firstNonZeroIndex = 0;
+        while (firstNonZeroIndex < n && result[firstNonZeroIndex] == 0) {
+            firstNonZeroIndex++;
+        }
+
+        if (firstNonZeroIndex == n) {
+            return new int[]{0};
+        }
+
+        int[] finalResult = new int[n - firstNonZeroIndex];
+        System.arraycopy(result, firstNonZeroIndex, finalResult, 0, n - firstNonZeroIndex);
+
+        if (isNegative) {
+            finalResult = addNegativeSign(finalResult);
+        }
+
+        return finalResult;
     }
 
-    public int[] mul(int[] arr, int num){
-        int aux = numberBuilder(arr) * num;
-        int power = power(arr), i = 0;
-        int[] result;
-        if(aux / power > 0)
-            result = new int[arr.length+1];
-        else
-            result = new int[arr.length];
-        while (aux !=0){
-            result[i] = aux%10;
-            aux /= 10;
-            i++;
-        }
-        for(int j = 0; j < result.length / 2; j++){
-            aux = result[j];
-            result[j] = result[result.length - j - 1];
-            result[result.length - j - 1] = aux;
-        }
-        return result;
+    private int[] addNegativeSign(int[] result) {
+        int[] resultWithSign = new int[result.length + 1];
+        resultWithSign[0] = -1; // -1 represents a negative sign
+        System.arraycopy(result, 0, resultWithSign, 1, result.length);
+        return resultWithSign;
     }
 
-    public int[] div(int[] arr, int num){
-        int aux = numberBuilder(arr)/num;
-        int i = 0, power = power(arr)/10;
-        int[] result;
-        if(aux/power != 0)
-            result = new int[arr.length];
-        else
-            result = new int[arr.length-1];
-        while (aux !=0){
-            result[i] = aux%10;
-            aux /= 10;
-            i++;
+    public int[] multiply(int[] list, int number) {
+        int n = list.length;
+        int[] result = new int[n];
+        int carry = 0;
+        for (int i = n - 1; i >= 0; i--) {
+            int product = list[i] * number + carry;
+            result[i] = product % 10;
+            carry = product / 10;
         }
-        for(int j = 0; j < result.length / 2; j++){
-            aux = result[j];
-            result[j] = result[result.length - j - 1];
-            result[result.length - j - 1] = aux;
+        if (carry > 0) {
+            int[] newResult = new int[n + 1];
+            newResult[0] = carry;
+            System.arraycopy(result, 0, newResult, 1, n);
+            return newResult;
+        } else {
+            return result;
         }
-        return result;
+    }
+
+    public int[] divide(int[] list, int divisor) {
+        if (divisor == 0) {
+            return new int[]{-1};
+        }
+        int n = list.length;
+        int[] quotient = new int[n];
+        int remainder = 0;
+
+        for (int i = 0; i < n; i++) {
+            int currentDigit = list[i] + remainder * 10;
+            quotient[i] = currentDigit / divisor;
+            remainder = currentDigit % divisor;
+        }
+
+        int firstNonZeroIndex = 0;
+        while (firstNonZeroIndex < n && quotient[firstNonZeroIndex] == 0) {
+            firstNonZeroIndex++;
+        }
+
+        if (firstNonZeroIndex == n) {
+            return new int[]{0};
+        }
+
+        int[] finalQuotient = new int[n - firstNonZeroIndex];
+        System.arraycopy(quotient, firstNonZeroIndex, finalQuotient, 0, n - firstNonZeroIndex);
+
+        return finalQuotient;
     }
 }
-
