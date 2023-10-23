@@ -1,5 +1,4 @@
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
@@ -42,7 +41,7 @@ public class OperationsTest {
 
         int[] list1 = {2, 3, 4};
         int number = 3;
-        int[] expected = {7, 0, 2}; // 234 * 3 = 702
+        int[] expected = {7, 0, 2};
         assertArrayEquals(expected, operations.multiply(list1, number));
 
         int[] list2 = {2, 0, 0};
@@ -55,7 +54,6 @@ public class OperationsTest {
     public void testDivide() {
         Operations operations = new Operations();
 
-        // Test case for division.
         int[] list1 = {7, 0, 2};
         int divisor = 3;
         int[] expected = {2, 3, 4};

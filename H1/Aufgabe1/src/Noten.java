@@ -1,7 +1,6 @@
 
 public class Noten {
 
-    // Methode zur Ermittlung von nicht ausreichenden Noten
     public int[] nichtAusreichendeNoten(int[] noten) {
         int[] nichtAusreichende = new int[noten.length];
         int index = 0;
@@ -19,7 +18,6 @@ public class Noten {
         return result;
     }
 
-    // Methode zur Berechnung des Durchschnitts
     public double durchschnittswert(int[] noten) {
         if (noten.length == 0) {
             return 0.0;
@@ -33,7 +31,6 @@ public class Noten {
         return (double) sum / noten.length;
     }
 
-    // Methode zur Abrundung der Noten
     public int[] abgerundeteNoten(int[] noten) {
         int[] abgerundet = new int[noten.length];
 
@@ -44,7 +41,6 @@ public class Noten {
         return abgerundet;
     }
 
-    // Methode zur Ermittlung der maximalen abgerundeten Note
     public int maximaleAbgerundeteNote(int[] noten) {
         int maxAbgerundet = Integer.MIN_VALUE;
 

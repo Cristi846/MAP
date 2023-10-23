@@ -12,6 +12,13 @@ public class Teste {
     }
 
     @Test
+    public void testNichAusreichendeNotenUnexpextedCase(){
+        int[] noten = {};
+        int[] nichtAusreichende = no.nichtAusreichendeNoten(noten);
+        assertArrayEquals(new int[]{}, nichtAusreichende);
+    }
+
+    @Test
     public void testDurchschnittswert() {
         int[] noten = {45, 30, 55, 65, 25};
         double durchschnitt = no.durchschnittswert(noten);
@@ -22,7 +29,7 @@ public class Teste {
     public void testDurchschnittswertEmptyArray() {
         int[] noten = {};
         double durchschnitt = no.durchschnittswert(noten);
-        assertEquals(0.0, durchschnitt, 0.01);
+        assertEquals(0.0, durchschnitt);
     }
 
     @Test

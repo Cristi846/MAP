@@ -69,7 +69,7 @@ public class Operations {
 
     private int[] addNegativeSign(int[] result) {
         int[] resultWithSign = new int[result.length + 1];
-        resultWithSign[0] = -1; // -1 represents a negative sign
+        resultWithSign[0] = -1;
         System.arraycopy(result, 0, resultWithSign, 1, result.length);
         return resultWithSign;
     }
